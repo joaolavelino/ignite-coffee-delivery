@@ -22,7 +22,7 @@ export const DrinkMenu = styled.ul`
     background-color: ${theme.color.gray[300]};
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 2rem;
   `}
 `
