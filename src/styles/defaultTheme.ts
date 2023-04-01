@@ -20,9 +20,9 @@ export const defaultTheme = {
       700: '#4B2995',
     },
     yellow: {
-      300: '#00B37E',
+      300: '#F1E9C9',
       500: '#DBAC2C',
-      700: '#F1E9C9',
+      700: '#C47F17',
     },
     error: {
       500: '#AB222E',

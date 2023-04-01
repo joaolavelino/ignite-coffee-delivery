@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components'
 
-export const StyledBanner = styled.div`
+export const StyledBanner = styled.section`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
     width: 100%;
+    height: 544px;
     position: relative;
     overflow: hidden;
   `}
@@ -12,7 +13,7 @@ export const StyledBanner = styled.div`
 
 export const BannerContent = styled.div`
   ${() => css`
-    padding: 8rem;
+    padding: 0;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -20,6 +21,18 @@ export const BannerContent = styled.div`
     gap: 2rem;
 
     @media screen and (max-width: 1024px) {
+      img {
+        width: 350px;
+      }
+    }
+
+    @media screen and (max-width: 870px) {
+      img {
+        width: 250px;
+      }
+    }
+    @media screen and (max-width: 640px) {
+      flex-direction: column-reverse;
       img {
         width: 350px;
       }

@@ -28,7 +28,7 @@ export type Order = {
   date: Date | null
   items: OrderItem[]
   address: Address | null
-  payment: 'Debit card' | 'Credit card' | 'Cash' | null
+  payment: PaymentMethods | null
 }
 
 export interface OrdersContextData {
@@ -36,9 +36,15 @@ export interface OrdersContextData {
   currentOrder: Order | null
   message: string | null
   addItem: (itemId: string, quantity: number) => void
+  changeQuantityOfItem: (itemId: string, amount: number) => void
   removeItem: (itemId: string) => void
   addAddress: (address: Address) => void
+  choosePayment: (payment: PaymentMethods) => void
   confirmOrder: () => void
+  totalDrinksOnTheOrder: () => number
+  totalPrice: () => number
+  deliveryCost: number
+  totalWithDelivery: number
 }
 
 export interface OrdersStateType {
@@ -46,3 +52,5 @@ export interface OrdersStateType {
   currentOrder: Order
   message: string | null
 }
+
+export type PaymentMethods = 'credit' | 'debit' | 'cash'

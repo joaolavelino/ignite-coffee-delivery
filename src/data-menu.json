@@ -3,7 +3,7 @@
     "id": "caf-op-01",
     "name": "Espresso Tradicional",
     "description": "O tradicional café feito com água quente e grãos moídos",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/espresso.png",
     "tags": ["tradicional"]
   },
@@ -11,7 +11,7 @@
     "id": "caf-op-02",
     "name": "Espresso Americano",
     "description": "Expresso diluído, menos intenso que o tradicional",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/espresso-americano.png",
     "tags": ["tradicional"]
   },
@@ -19,7 +19,7 @@
     "id": "caf-op-03",
     "name": "Espresso Cremoso",
     "description": "Café expresso tradicional com espuma cremosa",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/espresso-cremoso.png",
     "tags": ["tradicional"]
   },
@@ -27,7 +27,7 @@
     "id": "caf-op-04",
     "name": "Espresso Gelado",
     "description": "Bebida preparada com café expresso e cubos de gelo",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/espresso-gelado.png",
     "tags": ["tradicional", "gelado"]
   },
@@ -35,7 +35,7 @@
     "id": "caf-op-05",
     "name": "Café com Leite",
     "description": "Meio a meio de expresso tradicional com leite vaporizado",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/cafe-com-leite.png",
     "tags": ["tradicional", "com leite"]
   },
@@ -43,7 +43,7 @@
     "id": "caf-op-06",
     "name": "Latte",
     "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/latte.png",
     "tags": ["tradicional", "com leite"]
   },
@@ -51,7 +51,7 @@
     "id": "caf-op-07",
     "name": "Capuccino",
     "description": "Bebida com canela feita de doses iguais de café, leite e espuma",
-    "price": 9.9,
+    "price": 5.9,
     "imageUrl": "/coffees/capuccino.png",
     "tags": ["tradicional", "com leite"]
   },
@@ -67,7 +67,7 @@
     "id": "caf-op-09",
     "name": "Mocaccino",
     "description": "Café expresso com calda de chocolate, pouco leite e espuma",
-    "price": 9.9,
+    "price": 5.9,
     "imageUrl": "/coffees/mocaccino.png",
     "tags": ["tradicional", "com leite"]
   },
@@ -75,7 +75,7 @@
     "id": "caf-op-10",
     "name": "Chocolate Quente",
     "description": "Bebida feita com chocolate dissolvido no leite quente e café",
-    "price": 9.9,
+    "price": 4.9,
     "imageUrl": "/coffees/chocolate-quente.png",
     "tags": ["especial", "com leite"]
   },
@@ -83,7 +83,7 @@
     "id": "caf-op-11",
     "name": "Cubano",
     "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
-    "price": 12.9,
+    "price": 7.9,
     "imageUrl": "/coffees/cubano.png",
     "tags": ["especial", "alcoólico", "gelado"]
   },
@@ -91,7 +91,7 @@
     "id": "caf-op-12",
     "name": "Havaiano",
     "description": "Bebida adocicada preparada com café e leite de coco",
-    "price": 12.9,
+    "price": 7.9,
     "imageUrl": "/coffees/havaiano.png",
     "tags": ["especial"]
   },
@@ -99,7 +99,7 @@
     "id": "caf-op-13",
     "name": "Arabe",
     "description": "Bebida preparada com grãos de café árabe e especiarias",
-    "price": 12.9,
+    "price": 8.9,
     "imageUrl": "/coffees/arabe.png",
     "tags": ["especial"]
   },
@@ -107,7 +107,7 @@
     "id": "caf-op-14",
     "name": "Irlandês",
     "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-    "price": 12.9,
+    "price": 8.9,
     "imageUrl": "/coffees/irlandes.png",
     "tags": ["especial", "alcoólico"]
   }

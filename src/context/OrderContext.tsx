@@ -1,5 +1,10 @@
 import { createContext, ReactNode, useReducer } from 'react'
-import { Address, OrdersContextData, OrdersStateType } from '../models/coffee'
+import {
+  Address,
+  OrdersContextData,
+  OrdersStateType,
+  PaymentMethods,
+} from '../models/coffee'
 import { reducerFunction } from '../reducer/orders/reducer'
 
 export interface OrderContextModel {}
@@ -51,12 +56,37 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
   function confirmOrder() {
     dispatch({ type: 'CONFIRM_ORDER', payload: {} })
   }
+  function changeQuantityOfItem(itemId: string, amount: number) {
+    dispatch({ type: 'CHANGE_QUANTITY_OF_ITEM', payload: { itemId, amount } })
+  }
+  function choosePayment(payment: PaymentMethods) {
+    dispatch({ type: 'CHANGE_PAYMENT', payload: { payment } })
+  }
 
   const { currentOrder, message, orders } = orderState
+
+  const totalDrinksOnTheOrder = (): number => {
+    let count = 0
+    currentOrder.items.forEach((item) => (count = count + item.quantity))
+    return count
+  }
+
+  const totalPrice = (): number => {
+    let price = 0
+    currentOrder.items.forEach(
+      (item) => (price = price + item.quantity * item.item.price)
+    )
+    return +price.toFixed(2)
+  }
+
+  const deliveryCost = 5.0
+
+  const totalWithDelivery: number = +(deliveryCost + totalPrice()).toFixed(2)
 
   return (
     <OrdersContext.Provider
       value={{
+        totalDrinksOnTheOrder,
         currentOrder,
         message,
         orders,
@@ -64,6 +94,11 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
         removeItem,
         addAddress,
         confirmOrder,
+        changeQuantityOfItem,
+        totalPrice,
+        deliveryCost,
+        totalWithDelivery,
+        choosePayment,
       }}
     >
       {props.children}

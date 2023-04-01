@@ -1,4 +1,10 @@
-import { Address, Order, OrderItem, OrdersStateType } from '../../models/coffee'
+import {
+  Address,
+  Order,
+  OrderItem,
+  OrdersStateType,
+  PaymentMethods,
+} from '../../models/coffee'
 import { Actions } from './actions'
 import drinks from '../../data-menu.json'
 
@@ -12,10 +18,26 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
           payload.quantity,
           state.currentOrder
         )
+        console.log(updatedOrder)
         return {
           ...state,
           currentOrder: updatedOrder,
           message: 'Artikel hinzugefügt',
+        }
+      }
+      break
+    case 'CHANGE_QUANTITY_OF_ITEM':
+      {
+        const updatedQuantityOrder = addItem(
+          payload.itemId,
+          payload.amount,
+          state.currentOrder
+        )
+        console.log(updatedQuantityOrder)
+        return {
+          ...state,
+          currentOrder: updatedQuantityOrder,
+          message: 'Artikelmenge aktualiziert',
         }
       }
       break
@@ -45,6 +67,18 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         return updatedState
       }
       break
+    case 'CHANGE_PAYMENT':
+      {
+        const updatedPayment = choosePayment(
+          payload.payment,
+          state.currentOrder
+        )
+        return {
+          ...state,
+          currentOrder: updatedPayment,
+        }
+      }
+      break
     default:
       return { ...state }
   }
@@ -59,22 +93,39 @@ const emptyOrder: Order = {
 }
 
 function addItem(itemId: string, quantity: number, currentOrder: Order): Order {
+  console.log(itemId, quantity)
   const drinkToAdd = drinks.filter((el) => el.id === itemId)[0]
+
+  let updatedItemList: OrderItem[] = currentOrder.items.filter(
+    (el) => el.id != itemId
+  )
+
+  //check if drink is already on the order
+  const addedItemAlreadyInOrder: OrderItem | undefined =
+    currentOrder.items.find((el) => el.id === itemId)
+
+  //if it is the
+  const currentQuantity = addedItemAlreadyInOrder
+    ? addedItemAlreadyInOrder.quantity
+    : 0
+  const updatedQuantity = quantity + currentQuantity
+
+  // console.log(
+  //   addedItemAlreadyInOrder
+  //     ? 'this item is already on the order'
+  //     : 'this item is not in the order'
+  // )
 
   const newOrderItemObject: OrderItem = {
     id: itemId,
     item: drinkToAdd,
-    quantity,
+    quantity: updatedQuantity,
     subTotal: drinkToAdd.price * quantity,
   }
 
-  let updatedItemList: OrderItem[] = currentOrder.items
-  if (currentOrder.items.find((el) => el.id === itemId)) {
-    updatedItemList.filter((el) => el.id !== itemId)
-    updatedItemList.push(newOrderItemObject)
-  } else {
-    updatedItemList.push(newOrderItemObject)
-  }
+  updatedItemList.push(newOrderItemObject)
+
+  // console.log(updatedItemList)
 
   return {
     ...currentOrder,
@@ -93,6 +144,13 @@ function addAdress(address: Address, currentOrder: Order): Order {
   return {
     ...currentOrder,
     address,
+  }
+}
+
+function choosePayment(option: PaymentMethods, currentOrder: Order): Order {
+  return {
+    ...currentOrder,
+    payment: option,
   }
 }
 
