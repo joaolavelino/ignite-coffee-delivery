@@ -27,3 +27,20 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     border-radius: 0.25rem;
   `}
 `
+export const ButtonList = styled.ul`
+  ${() => css`
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    @media screen and (max-width: 1400px) {
+      flex-direction: column;
+    }
+    @media screen and (max-width: 1100px) {
+      flex-direction: row;
+    }
+    @media screen and (max-width: 640px) {
+      flex-direction: column;
+    }
+  `}
+`

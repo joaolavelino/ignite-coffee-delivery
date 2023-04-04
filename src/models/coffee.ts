@@ -19,7 +19,7 @@ export interface Address {
   number: string
   complement: string
   district: string
-  zip: string
+  zipCode: string
   city: string
 }
 

@@ -4,8 +4,7 @@ import { Button } from '../../../../components/Button'
 import { FlexBox } from '../../../../components/FlexBox'
 import { OrdersContext } from '../../../../context/OrderContext'
 import { PaymentMethods } from '../../../../models/coffee'
-import { NameValue } from '../../../../models/generic'
-import { ButtonWrapper, StyledSection } from './styles'
+import { ButtonList, ButtonWrapper, StyledSection } from './styles'
 
 export interface PaymentSelectorProps {}
 export const PaymentSelector: React.FC<PaymentSelectorProps> = () => {
@@ -52,9 +51,9 @@ export const PaymentSelector: React.FC<PaymentSelectorProps> = () => {
           <p>Wählen Sie eine Zahlungsmethode aus</p>
         </FlexBox>
       </FlexBox>
-      <FlexBox gap={1} full>
+      <ButtonList>
         {paymentOptions.map((option) => (
-          <ButtonWrapper active={currentOrder?.payment == option}>
+          <ButtonWrapper active={currentOrder?.payment == option} key={option}>
             <Button
               type="button"
               variant="gray"
@@ -66,7 +65,7 @@ export const PaymentSelector: React.FC<PaymentSelectorProps> = () => {
             </Button>
           </ButtonWrapper>
         ))}
-      </FlexBox>
+      </ButtonList>
     </StyledSection>
   )
 }

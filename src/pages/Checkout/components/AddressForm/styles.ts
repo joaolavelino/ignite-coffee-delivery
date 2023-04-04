@@ -26,6 +26,12 @@ export const Form = styled.form`
       @media screen and (max-width: 1400px) {
         flex-direction: column;
       }
+      @media screen and (max-width: 1100px) {
+        flex-direction: row;
+      }
+      @media screen and (max-width: 640px) {
+        flex-direction: column;
+      }
       gap: 0.5rem;
     }
 

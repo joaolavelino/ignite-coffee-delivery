@@ -14,5 +14,9 @@ export const OrderContainer = styled.div`
       width: 100%;
       padding: 20px;
     }
+
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+    }
   `}
 `
