@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import {
   Address,
   OrdersContextData,
@@ -25,6 +25,7 @@ const initialState: OrdersStateType = {
   },
   orders: [],
   isError: false,
+  error: '',
 }
 
 export function OrdersContextProvider(props: OrdersContextProviderProps) {
@@ -42,6 +43,14 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
       }
     }
   )
+  //update local storage
+  useEffect(() => {
+    const ordersJson = JSON.stringify(orderState)
+    localStorage.setItem(
+      '@ignite-coffee-delivery:ordersState-1.0.0',
+      ordersJson
+    )
+  }, [orderState])
 
   //functions with the dispatches
   function addItem(itemId: string, quantity: number) {
@@ -66,7 +75,7 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
     dispatch({ type: 'RESET_MESSAGE', payload: {} })
   }
 
-  const { currentOrder, orders, isError } = orderState
+  const { currentOrder, orders, isError, error } = orderState
 
   const totalDrinksOnTheOrder = (): number => {
     let count = 0
@@ -103,6 +112,7 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
         choosePayment,
         isError,
         resetError,
+        error,
       }}
     >
       {props.children}

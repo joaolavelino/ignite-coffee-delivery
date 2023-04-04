@@ -40,7 +40,6 @@ export const AddressForm: React.FC<AddressFormProps> = () => {
 
   function onSubmit(values: AddressFormData) {
     addAddress(values)
-    reset()
   }
 
   return (

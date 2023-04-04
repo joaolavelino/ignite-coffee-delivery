@@ -86,6 +86,7 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         return {
           ...state,
           isError: false,
+          error: '',
         }
       }
       break
@@ -162,16 +163,19 @@ function confirmOrder(state: OrdersStateType): OrdersStateType {
     return {
       ...state,
       isError: true,
+      error: 'Geben Sie bitte eine Adresse ein',
     }
   if (state.currentOrder?.items.length == 0)
     return {
       ...state,
       isError: true,
+      error: 'Ihr Warenkorb ist leer!',
     }
   if (state.currentOrder?.payment == null)
     return {
       ...state,
       isError: true,
+      error: 'Bitte wáhlen Sie einen Zahlungsart aus!',
     }
 
   const orderToBeConfirmed: Order = { ...state.currentOrder, date: new Date() }
@@ -180,5 +184,6 @@ function confirmOrder(state: OrdersStateType): OrdersStateType {
     currentOrder: emptyOrder,
     isError: false,
     orders: [...state.orders, orderToBeConfirmed],
+    error: 'Die Bestellung wurde bestätigt',
   }
 }

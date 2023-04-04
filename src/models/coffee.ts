@@ -46,12 +46,14 @@ export interface OrdersContextData {
   totalWithDelivery: number
   isError: boolean
   resetError: () => void
+  error: string
 }
 
 export interface OrdersStateType {
   orders: Order[]
   currentOrder: Order
   isError: boolean
+  error: string
 }
 
 export type PaymentMethods = 'credit' | 'debit' | 'cash'
