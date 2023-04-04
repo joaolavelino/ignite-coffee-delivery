@@ -22,7 +22,7 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         return {
           ...state,
           currentOrder: updatedOrder,
-          message: 'Artikel hinzugefügt',
+          isError: false,
         }
       }
       break
@@ -34,10 +34,11 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
           state.currentOrder
         )
         console.log(updatedQuantityOrder)
+
         return {
           ...state,
           currentOrder: updatedQuantityOrder,
-          message: 'Artikelmenge aktualiziert',
+          isError: false,
         }
       }
       break
@@ -47,7 +48,7 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         return {
           ...state,
           currentOrder: orderWithoutItem,
-          message: 'Artikel entfernt',
+          isError: false,
         }
       }
       break
@@ -56,8 +57,8 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         const updatedAdress = addAdress(payload.address, state.currentOrder)
         return {
           ...state,
-          address: updatedAdress,
-          message: 'Adresse hinzugefügt',
+          currentOrder: updatedAdress,
+          isError: false,
         }
       }
       break
@@ -76,9 +77,19 @@ export const reducerFunction = (state: OrdersStateType, action: Actions) => {
         return {
           ...state,
           currentOrder: updatedPayment,
+          isError: false,
         }
       }
       break
+    case 'RESET_MESSAGE':
+      {
+        return {
+          ...state,
+          isError: false,
+        }
+      }
+      break
+
     default:
       return { ...state }
   }
@@ -110,12 +121,6 @@ function addItem(itemId: string, quantity: number, currentOrder: Order): Order {
     : 0
   const updatedQuantity = quantity + currentQuantity
 
-  // console.log(
-  //   addedItemAlreadyInOrder
-  //     ? 'this item is already on the order'
-  //     : 'this item is not in the order'
-  // )
-
   const newOrderItemObject: OrderItem = {
     id: itemId,
     item: drinkToAdd,
@@ -124,8 +129,6 @@ function addItem(itemId: string, quantity: number, currentOrder: Order): Order {
   }
 
   updatedItemList.push(newOrderItemObject)
-
-  // console.log(updatedItemList)
 
   return {
     ...currentOrder,
@@ -156,17 +159,26 @@ function choosePayment(option: PaymentMethods, currentOrder: Order): Order {
 
 function confirmOrder(state: OrdersStateType): OrdersStateType {
   if (state.currentOrder?.address == null)
-    return { ...state, message: 'Adresse eingeben!' }
+    return {
+      ...state,
+      isError: true,
+    }
   if (state.currentOrder?.items.length == 0)
-    return { ...state, message: 'Ihr Warenkorb ist leer!' }
+    return {
+      ...state,
+      isError: true,
+    }
   if (state.currentOrder?.payment == null)
-    return { ...state, message: 'Wählen Sie eine Bezahlungsart!' }
+    return {
+      ...state,
+      isError: true,
+    }
 
   const orderToBeConfirmed: Order = { ...state.currentOrder, date: new Date() }
 
   return {
     currentOrder: emptyOrder,
-    message: 'Ihre Bestellung wurde bestätigt',
+    isError: false,
     orders: [...state.orders, orderToBeConfirmed],
   }
 }

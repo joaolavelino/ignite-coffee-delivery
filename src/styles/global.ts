@@ -31,8 +31,11 @@ export const GlobalStyle = createGlobalStyle`
 
    section {
      padding: 0 10rem;
+     @media screen and (max-width: 1300px) {
+       padding: 0 6rem;
+     }
      @media screen and (max-width: 1024px) {
-       padding: 0 5rem;
+       padding: 0 4rem;
      }
      @media screen and (max-width: 720px) {
        padding: 0 2rem;

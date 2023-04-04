@@ -34,7 +34,6 @@ export type Order = {
 export interface OrdersContextData {
   orders: Order[]
   currentOrder: Order | null
-  message: string | null
   addItem: (itemId: string, quantity: number) => void
   changeQuantityOfItem: (itemId: string, amount: number) => void
   removeItem: (itemId: string) => void
@@ -45,12 +44,18 @@ export interface OrdersContextData {
   totalPrice: () => number
   deliveryCost: number
   totalWithDelivery: number
+  isError: boolean
+  resetError: () => void
 }
 
 export interface OrdersStateType {
   orders: Order[]
   currentOrder: Order
-  message: string | null
+  isError: boolean
 }
 
 export type PaymentMethods = 'credit' | 'debit' | 'cash'
+export type MessageType = {
+  text: string
+  status: 'idle' | 'success' | 'error'
+}

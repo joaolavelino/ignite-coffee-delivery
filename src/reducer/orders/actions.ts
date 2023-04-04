@@ -7,6 +7,7 @@ export enum ActionTypes {
   CONFIRM_ORDER = 'CONFIRM_ORDER',
   CHANGE_QUANTITY_OF_ITEM = 'CHANGE_QUANTITY_OF_ITEM',
   CHANGE_PAYMENT = 'CHANGE_PAYMENT',
+  RESET_MESSAGE = 'RESET_MESSAGE',
 }
 
 export type Actions =
@@ -33,4 +34,8 @@ export type Actions =
   | {
       type: 'CHANGE_PAYMENT'
       payload: { payment: PaymentMethods }
+    }
+  | {
+      type: 'RESET_MESSAGE'
+      payload: {}
     }

@@ -24,7 +24,7 @@ const initialState: OrdersStateType = {
     payment: null,
   },
   orders: [],
-  message: '',
+  isError: false,
 }
 
 export function OrdersContextProvider(props: OrdersContextProviderProps) {
@@ -62,8 +62,11 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
   function choosePayment(payment: PaymentMethods) {
     dispatch({ type: 'CHANGE_PAYMENT', payload: { payment } })
   }
+  function resetError() {
+    dispatch({ type: 'RESET_MESSAGE', payload: {} })
+  }
 
-  const { currentOrder, message, orders } = orderState
+  const { currentOrder, orders, isError } = orderState
 
   const totalDrinksOnTheOrder = (): number => {
     let count = 0
@@ -88,7 +91,6 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
       value={{
         totalDrinksOnTheOrder,
         currentOrder,
-        message,
         orders,
         addItem,
         removeItem,
@@ -99,6 +101,8 @@ export function OrdersContextProvider(props: OrdersContextProviderProps) {
         deliveryCost,
         totalWithDelivery,
         choosePayment,
+        isError,
+        resetError,
       }}
     >
       {props.children}
