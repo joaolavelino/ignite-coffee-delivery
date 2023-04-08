@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
 export interface FlexBoxStyleProps {
@@ -130,7 +131,7 @@ const setPadding = (
   return `${pTop}rem ${pRight}rem ${pBottom}rem ${pLeft}rem`
 }
 
-export const FlexBoxContainer = styled.div<FlexBoxStyleProps>`
+export const FlexBoxContainer = styled(motion.div)<FlexBoxStyleProps>`
   ${({
     centralized = false,
     alignItems = 'flex-start',

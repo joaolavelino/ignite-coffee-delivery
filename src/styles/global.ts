@@ -73,6 +73,9 @@ export const GlobalStyle = createGlobalStyle`
      font-size: 1.75rem;
      line-height: 100%;
    }
+   p {
+     font-size: 1rem;
+   }
 
    input {
      padding: 0.75rem 1rem;

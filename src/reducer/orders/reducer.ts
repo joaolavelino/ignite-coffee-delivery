@@ -7,6 +7,8 @@ import {
 } from '../../models/coffee'
 import { Actions } from './actions'
 import drinks from '../../data-menu.json'
+import { useContext } from 'react'
+import { OrdersContext } from '../../context/OrderContext'
 
 export const reducerFunction = (state: OrdersStateType, action: Actions) => {
   const { type, payload } = action
@@ -158,6 +160,14 @@ function choosePayment(option: PaymentMethods, currentOrder: Order): Order {
   }
 }
 
+const totalPrice = (order: Order): number => {
+  let price = 0
+  order.items.forEach(
+    (item) => (price = price + item.quantity * item.item.price)
+  )
+  return +price.toFixed(2)
+}
+
 function confirmOrder(state: OrdersStateType): OrdersStateType {
   if (state.currentOrder?.address == null)
     return {
@@ -177,8 +187,12 @@ function confirmOrder(state: OrdersStateType): OrdersStateType {
       isError: true,
       error: 'Bitte wáhlen Sie einen Zahlungsart aus!',
     }
+  const total = totalPrice(state.currentOrder)
 
-  const orderToBeConfirmed: Order = { ...state.currentOrder, date: new Date() }
+  const orderToBeConfirmed: Order = {
+    ...state.currentOrder,
+    date: new Date(),
+  }
 
   return {
     currentOrder: emptyOrder,

@@ -56,3 +56,19 @@ export const BannerBG = styled.div`
     }
   `}
 `
+
+export const BannerInfo = styled.ul`
+  ${() => css`
+    margin: 4rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2rem;
+    max-width: 632px;
+
+    li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  `}
+`
